@@ -1,21 +1,24 @@
 {
-  "name": "npm-test",
+  "name": "express-cats-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple Express REST API for cat data and static files",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@eslint/css": "^2.0.0",
     "@eslint/js": "^10.0.1",
     "@eslint/json": "^2.1.0",
     "eslint": "^10.10.0",
-    "globals": "^17.12.0"
+    "globals": "^17.12.0",
+    "nodemon": "^3.1.14"
   },
   "dependencies": {
     "dotenv": "^18.0.6",
