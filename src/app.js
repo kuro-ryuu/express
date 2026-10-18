@@ -1,23 +1,24 @@
 import express from 'express';
+import api from './api/index.js';
 
-const hostname = '127.0.0.1';
 const app = express();
-const port = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use('/public', express.static('public'));
 
 app.get('/', (req, res) => {
   const myData = {
     cat_id: 1,
-    name: 'Misu',
+    name: 'carks',
     birthdate: '2021-05-12',
     weight: 4.2,
     owner: 'Alex',
-    image: 'C:\Users\Admin\express\public\puh.jpg',
+    image: '/public/puh.jpg',
   };
   res.json(myData);
 });
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.use('/api/v1', api);
+
+export default app;

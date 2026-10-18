@@ -1,0 +1,19 @@
+@baseUrl = http://127.0.0.1:3000/api/v1
+
+### Get all cats
+GET {{baseUrl}}/cats
+
+### Add new cat
+POST {{baseUrl}}/cats
+Content-Type: application/json
+
+{
+  "cat_name": "tbonesteak",
+  "birthdate": "2024-11-11",
+  "weight": 3.5,
+  "owner": 3603,
+  "filename": "/public/crab.png"
+}
+
+### Get all cats after adding
+GET {{baseUrl}}/cats
