@@ -6,10 +6,11 @@ import {
   postCat,
   putCat,
 } from '../controllers/cat-controller.js';
+import upload from '../../middlwares/upload.js';
 
 const catRouter = express.Router();
 
-catRouter.route('/').get(getCat).post(postCat);
+catRouter.route('/').get(getCat).post(upload.single('cat'), postCat);
 catRouter.route('/:id').get(getCatById).put(putCat).delete(deleteCat);
 
 export default catRouter;

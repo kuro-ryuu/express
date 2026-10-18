@@ -3,17 +3,32 @@
 ### Get all cats
 GET {{baseUrl}}/cats
 
-### Add new cat
+### Add new cat with a image
 POST {{baseUrl}}/cats
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=RestClientBoundary
 
-{
-  "cat_name": "tbonesteak",
-  "birthdate": "2024-11-11",
-  "weight": 3.5,
-  "owner": 3603,
-  "filename": "/public/crab.png"
-}
+--RestClientBoundary
+Content-Disposition: form-data; name="cat_name"
+
+tbonesteak
+--RestClientBoundary
+Content-Disposition: form-data; name="birthdate"
+
+2024-11-11
+--RestClientBoundary
+Content-Disposition: form-data; name="weight"
+
+3.5
+--RestClientBoundary
+Content-Disposition: form-data; name="owner"
+
+3603
+--RestClientBoundary
+Content-Disposition: form-data; name="cat"; filename="crab.png"
+Content-Type: image/png
+
+< C:\Users\Admin\express\public\crab.png
+--RestClientBoundary--
 
 ### Get all cats after adding
 GET {{baseUrl}}/cats

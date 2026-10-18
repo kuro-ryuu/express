@@ -14,11 +14,14 @@ const getCatById = (req, res) => {
 };
 
 const postCat = (req, res) => {
+  console.log('Cat form data:', req.body);
+  console.log('Uploaded cat file:', req.file);
+
   if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body)) {
     return res.status(400).json({message: 'Request body must be an object.'});
   }
 
-  const {cat_name, filename, birthdate} = req.body;
+  const {cat_name, birthdate} = req.body;
   const weight = Number(req.body.weight);
   const owner = Number(req.body.owner);
   const date = typeof birthdate === 'string'
@@ -36,13 +39,12 @@ const postCat = (req, res) => {
     weight <= 0 ||
     !Number.isInteger(owner) ||
     owner <= 0 ||
-    typeof filename !== 'string' ||
-    !filename.trim() ||
+    !req.file ||
     !validBirthdate
   ) {
     return res.status(400).json({
       message:
-        'Provide cat_name, a positive weight, a positive integer owner, filename, and a valid YYYY-MM-DD birthdate.',
+        'Provide a cat image file, cat_name, a positive weight, a positive integer owner, and a valid YYYY-MM-DD birthdate.',
     });
   }
 
@@ -50,7 +52,7 @@ const postCat = (req, res) => {
     cat_name: cat_name.trim(),
     weight,
     owner,
-    filename: filename.trim(),
+    filename: req.file.filename,
     birthdate,
   });
   return res.status(201).json({message: 'New cat added.', result});
